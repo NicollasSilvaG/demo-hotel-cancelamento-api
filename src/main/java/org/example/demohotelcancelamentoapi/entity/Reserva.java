@@ -6,8 +6,8 @@ import lombok.*;
 
 import java.util.Date;
 
-@Table(name = "reserva")
-@Entity(name = "reserva")
+@Table(name = "Reserva")
+@Entity(name = "Reserva")
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter

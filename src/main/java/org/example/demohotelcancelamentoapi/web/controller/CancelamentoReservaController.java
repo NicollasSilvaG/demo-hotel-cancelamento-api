@@ -11,10 +11,7 @@ import org.example.demohotelcancelamentoapi.service.CancelamentoReservaService;
 import org.example.demohotelcancelamentoapi.web.dto.CancelamentoReservaResponseDto;
 import org.example.demohotelcancelamentoapi.web.dto.mapper.CancelamentoReservaMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,23 +20,27 @@ import java.util.List;
 @RequestMapping("api/v1/reservas")
 public class CancelamentoReservaController {
 
-    private final CancelamentoReservaService hotelService;
+    private final CancelamentoReservaService cancelamentoReservaService;
 
-    @Operation(summary = "Listar hotéis por localização", description = "Listar hotéis por localização",
+    @Operation(summary = "Cancelar reserva por ID", description = "Cancela uma reserva com base no seu ID",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "Lista os hotéis com base em um termo que contenha parcialmente o nome da localização",
+
+                    @ApiResponse(responseCode = "204", description = "Reserva Cancelada",
                             content = @Content(mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = CancelamentoReservaResponseDto.class))))
+                                    array = @ArraySchema(schema = @Schema(implementation = CancelamentoReservaResponseDto.class)))),
+
+                    @ApiResponse(responseCode = "404", description = "Reserva não encontrada com o ID fornecido"),
             }
     )
-    @GetMapping("/localizacao/{local}")
-    public ResponseEntity<List<CancelamentoReservaResponseDto>> getByLocation(@PathVariable String local) {
-        List<Reserva> reservas = hotelService.buscarPorLocalizacao(local);
-        return ResponseEntity.ok(CancelamentoReservaMapper.toListDto(reservas));
+    @PatchMapping("/{reservaId}")
+    public ResponseEntity<Void> cancelarReserva(@PathVariable int reservaId) {
+        cancelamentoReservaService.cancelarReserva(reservaId);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping
     public String getTest() {
         return "Hotel Cancelamento Reserva API";
     }
+
 }

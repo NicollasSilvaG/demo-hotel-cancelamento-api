@@ -20,4 +20,13 @@ public class CancelamentoReservaService {
        List<Reserva> reservas = List.of();
         return reservas;
     }
+
+    @Transactional
+    public void cancelarReserva(int reservaId) {
+        Reserva reserva = cancelamentoReservaRepository.findById(reservaId)
+                .orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada com ID: " + reservaId));
+
+        reserva.setStatus("cancelada");
+
+    }
 }

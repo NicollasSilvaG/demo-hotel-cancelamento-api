@@ -11,7 +11,7 @@ public class SpringDocOpenApiConfig {
     public OpenAPI openAPI() {
         return new OpenAPI().info(new Info()
                 .title("REST API - Reserva")
-                .description("API para gestão de hotéis")
+                .description("API para gestão de cancelamento de reserva de hoteis")
                 .version("V1")
         );
     }

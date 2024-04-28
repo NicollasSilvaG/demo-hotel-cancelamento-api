@@ -1,4 +1,4 @@
-package com.example.demohotelapi.config;
+package org.example.demohotelcancelamentoapi.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

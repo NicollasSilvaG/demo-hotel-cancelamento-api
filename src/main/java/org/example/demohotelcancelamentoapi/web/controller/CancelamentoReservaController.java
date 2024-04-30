@@ -25,7 +25,7 @@ public class CancelamentoReservaController {
     @Operation(summary = "Cancelar reserva por ID", description = "Cancela uma reserva com base no seu ID",
             responses = {
 
-                    @ApiResponse(responseCode = "204", description = "Reserva Cancelada",
+                    @ApiResponse(responseCode = "204", description = "Reserva Cancelada com sucesso!",
                             content = @Content(mediaType = "application/json",
                                     array = @ArraySchema(schema = @Schema(implementation = CancelamentoReservaResponseDto.class)))),
 

@@ -7,6 +7,8 @@ import org.example.demohotelcancelamentoapi.repository.CancelamentoReservaReposi
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -26,7 +28,9 @@ public class CancelamentoReservaService {
         Reserva reserva = cancelamentoReservaRepository.findById(reservaId)
                 .orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada com ID: " + reservaId));
 
-        reserva.setStatus("cancelada");
+        if(LocalDate.now().isBefore(reserva.getCheck_in().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+            reserva.setStatus("cancelada");
+        }
 
     }
 }

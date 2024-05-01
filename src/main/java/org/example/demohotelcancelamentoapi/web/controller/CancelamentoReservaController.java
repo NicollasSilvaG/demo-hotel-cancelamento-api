@@ -17,19 +17,16 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/v1/reservas")
+@RequestMapping("api/v1/reservas/cancelamento")
 public class CancelamentoReservaController {
 
     private final CancelamentoReservaService cancelamentoReservaService;
 
-    @Operation(summary = "Cancelar reserva por ID", description = "Cancela uma reserva com base no seu ID",
+    @Operation(summary = "Cancela as reserva por ID", description = "Cancelar as reserva por ID",
             responses = {
-
-                    @ApiResponse(responseCode = "204", description = "Reserva Cancelada com sucesso!",
+                    @ApiResponse(responseCode = "204", description = "Cancela as reservas com base no id",
                             content = @Content(mediaType = "application/json",
-                                    array = @ArraySchema(schema = @Schema(implementation = CancelamentoReservaResponseDto.class)))),
-
-                    @ApiResponse(responseCode = "404", description = "Reserva não encontrada com o ID fornecido"),
+                                    array = @ArraySchema(schema = @Schema(implementation = CancelamentoReservaResponseDto.class))))
             }
     )
     @PatchMapping("/{reservaId}")

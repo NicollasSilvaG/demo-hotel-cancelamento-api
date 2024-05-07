@@ -21,9 +21,8 @@ public class CancelamentoReservaService {
         Reserva reserva = cancelamentoReservaRepository.findById(reservaId)
                 .orElseThrow(() -> new IllegalArgumentException("Reserva não encontrada com ID: " + reservaId));
 
-        if(LocalDate.now().isBefore(reserva.getCheck_in().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
+        if(LocalDate.now().isBefore(reserva.getCheck_in().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) && reserva.getStatus().equals("ativa")) {
             reserva.setStatus("cancelada");
         }
-
     }
 }

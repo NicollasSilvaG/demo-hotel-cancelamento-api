@@ -22,7 +22,7 @@ public class CancelamentoReservaController {
 
     private final CancelamentoReservaService cancelamentoReservaService;
 
-    @Operation(summary = "Cancela as reserva por ID", description = "Cancelar as reserva por ID",
+    @Operation(summary = "Cancela as reservas por ID", description = "Cancela as reservas por ID",
             responses = {
                     @ApiResponse(responseCode = "204", description = "Cancela as reservas com base no id",
                             content = @Content(mediaType = "application/json",

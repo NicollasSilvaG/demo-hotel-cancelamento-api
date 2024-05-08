@@ -35,9 +35,4 @@ public class CancelamentoReservaController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public String getTest() {
-        return "Hotel Cancelamento Reserva API";
-    }
-
 }
